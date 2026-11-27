@@ -72,6 +72,7 @@ namespace Notepad
             button2.TabIndex = 3;
             button2.Text = "Sil";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // label1
             // 

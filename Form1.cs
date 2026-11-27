@@ -80,12 +80,7 @@ namespace Notepad
                 EditedAt = DateTime.Now
             };
             noteNames.Add(note);
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(noteNames, options);
-
-            string filePath = "notes.json";
-            File.WriteAllText(filePath, jsonString);
-            Debug.WriteLine("Saved successfully!");
+            WriteListToJson();
 
             listBox1.Items.Add(note.NoteName);
             currentNote = note;
@@ -111,6 +106,11 @@ namespace Notepad
                     break;
                 }
             }
+            WriteListToJson();
+        }
+
+        private void WriteListToJson()
+        {
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(noteNames, options);
 
@@ -127,9 +127,13 @@ namespace Notepad
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(richTextBox1.Text != currentNote?.NoteContent)
+            if (richTextBox1.Text != currentNote?.NoteContent)
             {
                 SaveNote(currentNote);
+            }
+            if(listBox1.SelectedItem == null)
+            {
+                return;
             }
             foreach (var note in noteNames)
             {
@@ -142,6 +146,25 @@ namespace Notepad
                 }
             }
         }
-        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(currentNote == null)
+            {
+                return;
+            }
+            foreach(var note in noteNames)
+            {
+                if (note.NoteName == currentNote.NoteName)
+                {
+                    noteNames.Remove(note);
+                    WriteListToJson();
+                    listBox1.Items.Remove(note.NoteName);
+                    richTextBox1.Text = string.Empty;
+                    break;
+                }
+            }
+
+        }
     }
 }
