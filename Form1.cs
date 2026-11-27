@@ -42,6 +42,11 @@ namespace Notepad
         }
         private void KeyDownHandler(object sender, KeyEventArgs e)
         {
+            if (e.Control && e.KeyCode == Keys.T)
+            {
+                SaveFile();
+                e.SuppressKeyPress = true;
+            }
             if (e.Control && e.KeyCode == Keys.S)
             {
                 SaveNote(currentNote);
