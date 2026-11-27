@@ -60,7 +60,7 @@ namespace Notepad
             button1.Name = "button1";
             button1.Size = new Size(85, 25);
             button1.TabIndex = 2;
-            button1.Text = "Yeni";
+            button1.Text = "New";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -70,7 +70,7 @@ namespace Notepad
             button2.Name = "button2";
             button2.Size = new Size(78, 25);
             button2.TabIndex = 3;
-            button2.Text = "Sil";
+            button2.Text = "Delete";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -94,7 +94,7 @@ namespace Notepad
             Controls.Add(listBox1);
             Controls.Add(richTextBox1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Notepad";
             ResumeLayout(false);
             PerformLayout();
         }
