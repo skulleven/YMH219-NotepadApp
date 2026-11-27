@@ -17,6 +17,9 @@ namespace Notepad
         {
             public string NoteName { get; set; }
             public string NoteContent { get; set; }
+            public DateTime CreatedAt { get; set; }
+            public DateTime EditedAt { get; set; }
+
         }
 
         private List<NoteData> noteNames = new List<NoteData>();
@@ -72,7 +75,9 @@ namespace Notepad
             var note = new NoteData
             {
                 NoteName = $"Note {noteNames.Count + 1}",
-                NoteContent = string.Empty
+                NoteContent = string.Empty,
+                CreatedAt = DateTime.Now,
+                EditedAt = DateTime.Now
             };
             noteNames.Add(note);
             var options = new JsonSerializerOptions { WriteIndented = true };
@@ -85,6 +90,7 @@ namespace Notepad
             listBox1.Items.Add(note.NoteName);
             currentNote = note;
             listBox1.SelectedItem = note.NoteName;
+            label1.Text = $"Created At: {note.CreatedAt.ToString("g")} | Edited At: {note.EditedAt.ToString("g")}";
         }
         private void SaveNote(NoteData? noteData)
         {
@@ -100,6 +106,8 @@ namespace Notepad
                 if (note.NoteName != null && note.NoteName == noteData.NoteName)
                 {
                     note.NoteContent = richTextBox1.Text;
+                    note.EditedAt = DateTime.Now;
+                    label1.Text = $"Created At: {note.CreatedAt.ToString("g")} | Edited At: {note.EditedAt.ToString("g")}";
                     break;
                 }
             }
@@ -119,16 +127,21 @@ namespace Notepad
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveNote(currentNote);
+            if(richTextBox1.Text != currentNote?.NoteContent)
+            {
+                SaveNote(currentNote);
+            }
             foreach (var note in noteNames)
             {
                 if (note.NoteName == listBox1.SelectedItem.ToString())
                 {
                     richTextBox1.Text = note.NoteContent;
                     currentNote = note;
+                    label1.Text = $"Created At: {note.CreatedAt.ToString("g")} | Edited At: {note.EditedAt.ToString("g")}";
                     break;
                 }
             }
         }
+        
     }
 }

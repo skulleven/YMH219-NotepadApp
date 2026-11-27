@@ -34,6 +34,7 @@ namespace Notepad
             listBox1 = new ListBox();
             button1 = new Button();
             button2 = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // richTextBox1
@@ -49,7 +50,7 @@ namespace Notepad
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(3, 44);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(169, 394);
+            listBox1.Size = new Size(169, 424);
             listBox1.TabIndex = 1;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -67,16 +68,26 @@ namespace Notepad
             // 
             button2.Location = new Point(94, 10);
             button2.Name = "button2";
-            button2.Size = new Size(78, 23);
+            button2.Size = new Size(78, 25);
             button2.TabIndex = 3;
             button2.Text = "Sil";
             button2.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(178, 450);
+            label1.Name = "label1";
+            label1.Size = new Size(28, 15);
+            label1.TabIndex = 4;
+            label1.Text = "Info";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 474);
+            Controls.Add(label1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(listBox1);
@@ -84,6 +95,7 @@ namespace Notepad
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -92,5 +104,6 @@ namespace Notepad
         private ListBox listBox1;
         private Button button1;
         private Button button2;
+        private Label label1;
     }
 }
