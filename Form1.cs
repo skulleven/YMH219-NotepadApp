@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text.Json;
+using Microsoft.VisualBasic;
 
 namespace Notepad
 {
@@ -72,9 +73,15 @@ namespace Notepad
         }
         private void CreateFile()
         {
+            string name = Interaction.InputBox("Enter your note name:", "User Input", "Default Text");
+            if(name == null || name == string.Empty)
+            {
+                MessageBox.Show("Note name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var note = new NoteData
             {
-                NoteName = $"Note {noteNames.Count + 1}",
+                NoteName = name,
                 NoteContent = string.Empty,
                 CreatedAt = DateTime.Now,
                 EditedAt = DateTime.Now
